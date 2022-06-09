@@ -79,6 +79,70 @@ namespace Aula8.Fiap
 
             Console.WriteLine($"Conta Poupança: \n{poupanca}");
 
+            int opcao;
+
+            do
+            {
+                Console.WriteLine("------------------------------");
+                Console.WriteLine("Escolha uma das opções abaixo: \n'1-Depósito em conta \n2-Retirada - Conta Corrente \n3-Depósito - Conta Poupança" +
+                    "\n4-Retirada - Conta Poupança \n5-Exibir dados das contas \n6-Calcular retorno Investimento \n0-Sair");
+                Console.WriteLine("------------------------------");
+
+                opcao = int.Parse(Console.ReadLine());
+
+                switch (opcao)
+                {
+                    case 1:
+                        Console.WriteLine("Digite o valor para depósito");
+                        cc.Depositar(decimal.Parse(Console.ReadLine()));
+                        Console.WriteLine($"Novo saldo? {cc.Saldo}");
+                        break;
+                    case 2:
+                        try
+                        {
+                            Console.WriteLine("Digite o valor para retirada:");
+                            cc.Retirar(decimal.Parse(Console.ReadLine()));
+                            Console.WriteLine($"Novo saldo: {cc.Saldo}");
+                        }
+                        catch (SaldoInsuficienteException e)
+                        {
+                            Console.WriteLine($"Não foi possível realizar a retirada: {e.Message} ");
+                        }
+                        break;
+                    case 3:
+                        Console.WriteLine("Digite o valor a ser depositado:");
+                        poupanca.Depositar(decimal.Parse(Console.ReadLine()));
+                        Console.WriteLine($"Novo saldo: {poupanca.Saldo}");
+                        break;
+                    case 4:
+                        try
+                        {
+                            Console.WriteLine("Digite o valor da retirada:");
+                            poupanca.Retirar(decimal.Parse(Console.ReadLine()));
+                            Console.WriteLine($"Novo saldo: {poupanca.Saldo}");
+                        }
+                        catch (SaldoInsuficienteException e)
+                        {
+                            Console.WriteLine($"Não foi possível realizar a retirada: {e.Message} ");
+                        }
+                        break;
+                    case 5:
+                        Console.WriteLine($"Conta corrente: \n{cc}");
+                        Console.WriteLine($"Conta poupanca: \n{poupanca}");
+                        break;
+
+                    case 6:
+                        Console.WriteLine($"O retorno do investimento é: {poupanca.CalcularRetornoInvestimento()}");
+                        break;
+                    case 0:
+                        Console.WriteLine("Finalizando o sistema. Obrigada por utilizar o Banco Shift ");
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida.");
+                        break;
+                }
+            } while (opcao != 0);
+
         }
     }
 }
