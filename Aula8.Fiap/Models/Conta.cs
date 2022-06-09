@@ -42,7 +42,7 @@ namespace Aula8.Fiap.Models
             {
                 detalhes += $"{item} \n";
             }
-            detalhes += $"Agencia: {Agencia}\nNúmero: {Numero}\nSaldo: {Saldo.ToString("c")}\nData abertura: {DataAbertura} ";
+            detalhes += $"\nAgencia: {Agencia}\nNúmero: {Numero}\nSaldo: {Saldo.ToString("c")}\nData abertura: {DataAbertura} ";
 
             return detalhes;
         }

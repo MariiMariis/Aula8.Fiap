@@ -21,13 +21,13 @@ namespace Aula8.Fiap
             for (int i = 1; i <= qtd; i++)
             {
                 // Le os dados do cliente
-                Console.WriteLine($"Digite o Id do cliente {i}");
+                Console.WriteLine($"\nDigite o Id do cliente {i}");
                 long id = long.Parse(Console.ReadLine());
 
-                Console.WriteLine($"Digite o Nome do cliente {i}");
+                Console.WriteLine($"\nDigite o Nome do cliente {i}");
                 string nome = Console.ReadLine();
 
-                Console.WriteLine($"Digite o CPF do cliente {i}");
+                Console.WriteLine($"\nDigite o CPF do cliente {i}");
                 string cpf = Console.ReadLine();
 
                 //Instanciando o cliente
@@ -37,15 +37,15 @@ namespace Aula8.Fiap
                 clientes.Add(cliente);
             }
 
-            Console.WriteLine("Digite o número da conta corrente:");
+            Console.WriteLine("\nDigite o número da conta corrente:");
             var numero = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Digite o número da agencia conta corrente:");
+            Console.WriteLine("\nDigite o número da agencia conta corrente:");
             var agencia = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Digite o data de abertura da conta corrente:");
-            var dataAbertura = DateTime.Parse(Console.ReadLine());
+            var dataAbertura = DateTime.Today;
 
+            Console.WriteLine("\nDigite o tipo da conta corrente:");
             // var varivelName = (cast) -> Converte a string para os valores do Enum TipoConta, true -> Não diferencia maíúsculas de minúsculas
             TipoConta tipo = (TipoConta) Enum.Parse(typeof(TipoConta), Console.ReadLine(), true);
 
@@ -56,19 +56,20 @@ namespace Aula8.Fiap
             };
 
             //Exibir os dados da conta corrente
-            Console.WriteLine($"Conta Corrente: \n{cc}");
+            Console.WriteLine($"\nConta Corrente: \n{cc}");
 
             // Le os dados da conta poupança
-            Console.WriteLine("Digite o número da conta poupança:");
+            Console.WriteLine("\nDigite o número da conta poupança:");
             numero = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Digite a agência da conta poupança:");
+            Console.WriteLine("\nDigite a agência da conta poupança:");
             agencia = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Digite a data de abertura da conta poupança:");
-            dataAbertura = DateTime.Parse(Console.ReadLine());
+            //o método today do datetime chama automaticamente a data do dia de hoje
 
-            Console.WriteLine("Digite a taxa de retirada da conta poupança:");
+            dataAbertura = DateTime.Today;
+
+            Console.WriteLine("\nDigite a taxa de retirada da conta poupança:");
             var taxa = decimal.Parse(Console.ReadLine());
 
             // Instanciar a conta Poupança
@@ -77,25 +78,28 @@ namespace Aula8.Fiap
                 DataAbertura = dataAbertura
             };
 
-            Console.WriteLine($"Conta Poupança: \n{poupanca}");
+            Console.WriteLine($"\nConta Poupança: \n{poupanca}");
 
             int opcao;
 
+            //Inicia a execução do menu
             do
             {
                 Console.WriteLine("------------------------------");
-                Console.WriteLine("Escolha uma das opções abaixo: \n'1-Depósito em conta \n2-Retirada - Conta Corrente \n3-Depósito - Conta Poupança" +
+                Console.WriteLine("\nEscolha uma das opções abaixo: \n1-Depósito em conta \n2-Retirada - Conta Corrente \n3-Depósito - Conta Poupança" +
                     "\n4-Retirada - Conta Poupança \n5-Exibir dados das contas \n6-Calcular retorno Investimento \n0-Sair");
-                Console.WriteLine("------------------------------");
+                Console.WriteLine("\n------------------------------");
 
                 opcao = int.Parse(Console.ReadLine());
 
+                // Realiza um determinada ação, a depender da opção escolhida.
+                //Opção essa, armazenada pela variável opcao
                 switch (opcao)
                 {
                     case 1:
                         Console.WriteLine("Digite o valor para depósito");
                         cc.Depositar(decimal.Parse(Console.ReadLine()));
-                        Console.WriteLine($"Novo saldo? {cc.Saldo}");
+                        Console.WriteLine($"Novo saldo: {cc.Saldo}");
                         break;
                     case 2:
                         try
